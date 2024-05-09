@@ -5,6 +5,8 @@ pub struct TemplateApp {
     // Example stuff:
     label: String,
 
+    counter: i32,
+
     #[serde(skip)] // This how you opt-out of serialization of a field
     value: f32,
 }
@@ -14,6 +16,7 @@ impl Default for TemplateApp {
         Self {
             // Example stuff:
             label: "Hello World!".to_owned(),
+            counter: 0,
             value: 2.7,
         }
     }
@@ -62,6 +65,7 @@ impl eframe::App for TemplateApp {
                 }
 
                 egui::widgets::global_dark_light_mode_buttons(ui);
+                ui_counter(ui, &mut self.counter)
             });
         });
 
@@ -105,5 +109,17 @@ fn powered_by_egui_and_eframe(ui: &mut egui::Ui) {
             "https://github.com/emilk/egui/tree/master/crates/eframe",
         );
         ui.label(".");
+    });
+}
+
+pub fn ui_counter(ui: &mut egui::Ui, counter: &mut i32) {
+    ui.horizontal(|ui| {
+        if ui.button("-").clicked() {
+            *counter -= 1;
+        }
+        ui.label(counter.to_string());
+        if ui.button("+").clicked() {
+            *counter += 1;
+        }
     });
 }
