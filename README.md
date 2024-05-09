@@ -1,3 +1,35 @@
+# e-learnin'
+
+## Features of Note
+- `callstack`: show debug-ui on hover
+- `deadlock_detection`: detects double-locking of a few particular, but common locks
+- `puffin`: cool-lookign profiler
+- `rayon`: for rayin'
+- `serde`: for serdin'
+- `document_features`: um, why wouldn't ya?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Old (Original) README text
+____________________________________________________________
 # eframe template
 
 [![dependency status](https://deps.rs/repo/github/emilk/eframe_template/status.svg)](https://deps.rs/repo/github/emilk/eframe_template)
