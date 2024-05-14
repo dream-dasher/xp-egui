@@ -1063,6 +1063,7 @@ dependencies = [
  "log",
  "polars",
  "serde",
+ "walkdir",
  "wasm-bindgen-futures",
 ]
 
