@@ -8,6 +8,9 @@
 - `serde`: for serdin'
 - `document_features`: um, why wouldn't ya?
 
+## Examples of note
+- Parallel threads in main egui crate examples
+- table test
 
 
 
