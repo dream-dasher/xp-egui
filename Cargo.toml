@@ -24,6 +24,9 @@ log = "0.4"
 serde = { version = "1", features = ["derive"] }
 polars = { version = "0.39.2", features = ["lazy", "csv"] }
 walkdir = "2.5.0"
+tracing = "0.1.40"
+tracing-subscriber = { version = "0.3.18", features = ["env-filter"] }
+egui_inbox = "0.4.1"
 
 # native:
 [target.'cfg(not(target_arch = "wasm32"))'.dependencies]
