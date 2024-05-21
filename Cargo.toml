@@ -27,8 +27,6 @@ walkdir = "2.5.0"
 tracing = "0.1.40"
 tracing-subscriber = { version = "0.3.18", features = ["env-filter"] }
 egui_inbox = "0.4.1"
-ratframe = "1.1.4"
-ratatui = "0.26.3"
 
 # native:
 [target.'cfg(not(target_arch = "wasm32"))'.dependencies]
