@@ -22,11 +22,13 @@ log = "0.4"
 
 # You only need serde if you want app persistence:
 serde = { version = "1", features = ["derive"] }
-polars = { version = "0.39.2", features = ["lazy", "csv"] }
+polars = { version = "0.39.2", features = ["lazy", "csv", "serde", "parquet", "polars-io", "temporal"] }
 walkdir = "2.5.0"
 tracing = "0.1.40"
 tracing-subscriber = { version = "0.3.18", features = ["env-filter"] }
 egui_inbox = "0.4.1"
+egui_extras = "0.27.2"
+tokio = { version = "1.37.0", features = ["full", "tracing"] }
 
 # native:
 [target.'cfg(not(target_arch = "wasm32"))'.dependencies]
