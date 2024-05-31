@@ -3,7 +3,7 @@
 ## Features of Note
 - `callstack`: show debug-ui on hover
 - `deadlock_detection`: detects double-locking of a few particular, but common locks
-- `puffin`: cool-lookign profiler
+- `puffin`: cool-looking profiler
 - `rayon`: for rayin'
 - `serde`: for serdin'
 - `document_features`: um, why wouldn't ya?
