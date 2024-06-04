@@ -6,7 +6,8 @@ pub struct TemplateApp {
     // Example stuff:
     label: String,
 
-    counter: i32,
+    counter:      i32,
+    boop_counter: u64,
 
     #[serde(skip)] // This how you opt-out of serialization of a field
     value: f32,
@@ -15,9 +16,10 @@ pub struct TemplateApp {
 impl Default for TemplateApp {
     fn default() -> Self {
         Self { // Example stuff:
-               label:   "Hello World!".to_owned(),
-               counter: 0,
-               value:   2.7, }
+               label:        "Hello World!".to_owned(),
+               counter:      0,
+               boop_counter: 0,
+               value:        2.7, }
     }
 }
 
@@ -81,7 +83,8 @@ impl eframe::App for TemplateApp {
             if ui.button("Increment").clicked() {
                 self.value += 1.0;
             } else {
-                println!("hi there");
+                self.boop_counter += 1;
+                println!("hi there: {}", self.boop_counter);
             }
 
             ui.separator();
