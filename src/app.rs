@@ -1,3 +1,5 @@
+use tracing::instrument;
+
 /// We derive Deserialize/Serialize so we can persist app state on shutdown.
 
 #[derive(serde::Deserialize, serde::Serialize)]
@@ -14,7 +16,9 @@ pub struct TemplateApp {
 }
 
 impl Default for TemplateApp {
+    #[instrument]
     fn default() -> Self {
+        tracing::warn!("Deeeeeffauuuuult");
         Self { // Example stuff:
                label:        "Hello World!".to_owned(),
                counter:      0,
@@ -25,7 +29,9 @@ impl Default for TemplateApp {
 
 impl TemplateApp {
     /// Called once before the first frame.
+    #[instrument(skip(cc))]
     pub fn new(cc: &eframe::CreationContext<'_>) -> Self {
+        tracing::info!("Creating TemplateApp");
         // This is also where you can customize the look and feel of egui using
         // `cc.egui_ctx.set_visuals` and `cc.egui_ctx.set_fonts`.
 
@@ -41,11 +47,13 @@ impl TemplateApp {
 
 impl eframe::App for TemplateApp {
     /// Called by the frame work to save state before shutdown.
+    #[instrument(skip(self, storage))]
     fn save(&mut self, storage: &mut dyn eframe::Storage) {
         eframe::set_value(storage, eframe::APP_KEY, self);
     }
 
     /// Called each time the UI needs repainting, which may be many times per second.
+    #[instrument(skip(self, _frame))]
     fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
         // Put your widgets into a `SidePanel`, `TopBottomPanel`, `CentralPanel`, `Window` or `Area`.
         // For inspiration and more examples, go to https://emilk.github.io/egui
@@ -79,6 +87,9 @@ impl eframe::App for TemplateApp {
                   ui.text_edit_singleline(&mut self.label);
               });
 
+            // enter new span
+            let span = tracing::span!(tracing::Level::WARN, "egui-pppppp", "value" = self.value);
+            let _enter = span.enter();
             ui.add(egui::Slider::new(&mut self.value, 0.0..=10.0).text("value"));
             if ui.button("Increment").clicked() {
                 self.value += 1.0;
@@ -86,6 +97,9 @@ impl eframe::App for TemplateApp {
                 self.boop_counter += 1;
                 println!("hi there: {}", self.boop_counter);
             }
+            // exit span
+            // _enter is dropped here
+            drop(_enter);
 
             ui.separator();
 
@@ -100,6 +114,7 @@ impl eframe::App for TemplateApp {
     }
 }
 
+#[instrument(skip(ui))]
 fn powered_by_egui_and_eframe(ui: &mut egui::Ui) {
     ui.horizontal(|ui| {
           ui.spacing_mut().item_spacing.x = 0.0;
@@ -112,6 +127,7 @@ fn powered_by_egui_and_eframe(ui: &mut egui::Ui) {
       });
 }
 
+#[instrument(skip(ui))]
 pub fn ui_counter(ui: &mut egui::Ui, counter: &mut i32) {
     ui.horizontal(|ui| {
           if ui.button("-").clicked() {

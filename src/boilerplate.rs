@@ -4,7 +4,7 @@ use tracing_subscriber::EnvFilter;
 
 /// Start boilerplate tracing subscriber, with a default log level, when none is specified
 ///
-/// Allows easily setting regular tracing or console input via config.  
+/// Allows easily setting regular tracing or console input via config.
 /// Does its job alright for now.
 ///
 /// # Note:
@@ -21,5 +21,7 @@ pub fn tracing_subscriber_boilerplate(log_default: &str) {
                              .with_line_number(true)
                              .with_thread_ids(true)
                              .with_target(true)
+                             .with_span_events(tracing_subscriber::fmt::format::FmtSpan::ENTER)
+                             // .with_span_events(tracing_subscriber::fmt::format::FmtSpan::CLOSE)
                              .init();
 }
