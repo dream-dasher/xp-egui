@@ -1,0 +1,7 @@
+PROGRAM_NAME,ALIAS,PROGRAM_VERSION,PROGRAM_INSTALL
+cargo-watch,"cargo watch",,"cargo install cargo-watch"
+committed,,,"cargo install committed"
+puffin_viewer,,,"cargo isntall puffin_viewer"
+just,justfile,,"cargo install just"
+typos,typos-cli,,"cargo install typos-cli"
+xsv,,,"cargo install xsv"
